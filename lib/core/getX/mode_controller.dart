@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class ModeController extends GetxController {
-  bool isDark = false;
+  bool isDark = true;
 
   void changeMode(bool status) {
     isDark = status;
