@@ -1,10 +1,13 @@
 import 'package:android_app/core/constants/pallete.dart';
 import 'package:android_app/core/constants/size_config.dart';
 import 'package:android_app/core/getX/mode_controller.dart';
+import 'package:android_app/ui/widgets/main_search.dart';
+import 'package:android_app/ui/views/authentication/login_screen.dart';
 import 'package:android_app/ui/widgets/feature_cards_list.dart';
 import 'package:android_app/ui/widgets/header.dart';
 import 'package:android_app/ui/widgets/top_streamers_list.dart';
 import 'package:android_app/ui/widgets/top_streams_list.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: EdgeInsets.all(SizeConfig.height! * 0.01),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
+                  );
+                },
                 child: Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
@@ -63,15 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Center(
-                      child: Text(
-                        "KG",
-                        style: TextStyle(
-                          color: Palette.appDarkFontColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: Icon(MaterialCommunityIcons.account),
                     ),
                   ),
                 ),
@@ -98,31 +101,14 @@ class _HomeScreenState extends State<HomeScreen> {
             color: modeController.isDark
                 ? Palette.appDarkColor
                 : Palette.appLightColor,
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 8.0,
-                  left: 20,
-                  right: 20,
-                  bottom: 10,
-                ),
-                child: CupertinoSearchTextField(
-                  placeholder: "Search streamers",
-                  itemSize: 25.0,
-                  padding: const EdgeInsets.all(12.0),
-                  style: TextStyle(
-                    color: modeController.isDark
-                        ? Palette.appDarkFontColor
-                        : Palette.appLightFontColor,
-                  ),
-                ),
-              ),
-              const Header(title: "Categories"),
-              const FeatureCardsList(),
-              const Header(title: "Top Streams"),
-              const TopStreamsListView(),
-              const Header(title: "Top Streamers"),
-              const TopStreamersListView(),
+            child: Column(children: const [
+              MainSearch(),
+              Header(title: "Categories"),
+              FeatureCardsList(),
+              Header(title: "Top Streams"),
+              TopStreamsListView(),
+              Header(title: "Top Streamers"),
+              TopStreamersListView(),
             ]),
           ),
         ),

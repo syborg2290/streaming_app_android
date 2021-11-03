@@ -53,7 +53,6 @@ dispose() {
               colors: <Color>[
                 Palette.appMainColor,
                 Colors.purple,
-                Colors.red,
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
